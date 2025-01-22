@@ -1,0 +1,27 @@
+name: Makefile CI
+
+on:
+  push:
+    branches: [ "gta2sltedx-user-9-PPR1.180610.011-T385DXU3CSL2-release-keys" ]
+  pull_request:
+    branches: [ "gta2sltedx-user-9-PPR1.180610.011-T385DXU3CSL2-release-keys" ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: configure
+      run: ./configure
+
+    - name: Install dependencies
+      run: make
+
+    - name: Run check
+      run: make check
+
+    - name: Run distcheck
+      run: make distcheck
